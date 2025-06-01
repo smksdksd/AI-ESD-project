@@ -1,5 +1,6 @@
 import streamlit as st
 import random
+import os
 
 st.title("🎉 오늘의 MBTI 밈 메시지 생성기 🎉")
 
