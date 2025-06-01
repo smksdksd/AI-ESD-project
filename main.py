@@ -1,43 +1,35 @@
 import streamlit as st
-from PIL import Image
 import random
-import os
 
-st.title("🎉 오늘의 MBTI 밈 생성기 🎉")
+st.title("🎉 오늘의 MBTI 밈 메시지 생성기 🎉")
 
 # 사용자로부터 MBTI 입력 받기
 mbti = st.text_input("당신의 MBTI를 입력하세요 (예: INFP, ESTJ 등):").upper()
 
-# MBTI별 밈 사전
-mbti_memes = {
-    "INFP": ["memes/infp_meme1.jpg", "memes/infp_meme2.jpg"],
-    "INFJ": ["memes/infj_meme1.jpg", "memes/infj_meme2.jpg"],
-    "INTP": ["memes/intp_meme1.jpg", "memes/intp_meme2.jpg"],
-    "INTJ": ["memes/intj_meme1.jpg", "memes/intj_meme2.jpg"],
-    "ISFP": ["memes/isfp_meme1.jpg", "memes/isfp_meme2.jpg"],
-    "ISFJ": ["memes/isfj_meme1.jpg", "memes/isfj_meme2.jpg"],
-    "ISTP": ["memes/istp_meme1.jpg", "memes/istp_meme2.jpg"],
-    "ISTJ": ["memes/istj_meme1.jpg", "memes/istj_meme2.jpg"],
-    "ENFP": ["memes/enfp_meme1.jpg", "memes/enfp_meme2.jpg"],
-    "ENFJ": ["memes/enfj_meme1.jpg", "memes/enfj_meme2.jpg"],
-    "ENTP": ["memes/entp_meme1.jpg", "memes/entp_meme2.jpg"],
-    "ENTJ": ["memes/entj_meme1.jpg", "memes/entj_meme2.jpg"],
-    "ESFP": ["memes/esfp_meme1.jpg", "memes/esfp_meme2.jpg"],
-    "ESFJ": ["memes/esfj_meme1.jpg", "memes/esfj_meme2.jpg"],
-    "ESTP": ["memes/estp_meme1.jpg", "memes/estp_meme2.jpg"],
-    "ESTJ": ["memes/estj_meme1.jpg", "memes/estj_meme2.jpg"],
+# MBTI별 밈 메시지 예시
+mbti_messages = {
+    "INFP": ["오늘은 꿈꾸는 당신의 날이에요. 🌈", "자기만의 세계를 마음껏 탐험해보세요!"],
+    "INFJ": ["세상을 바꿀 수 있는 아이디어를 내보세요.", "오늘은 조용히 관찰자가 되어보세요."],
+    "INTP": ["호기심이 샘솟는 하루! 실험 정신을 발휘하세요. 🧪", "아이디어를 노트에 꼭 적어두세요!"],
+    "INTJ": ["계획을 세우고 한 발짝씩 실행해봐요.", "당신의 비전을 현실로 만들어보세요!"],
+    "ISFP": ["오늘은 감각적인 영감을 따라가보세요. 🎨", "자연 속에서 마음의 평화를 찾아보세요."],
+    "ISFJ": ["당신의 섬세함이 큰 힘이 돼요. 💪", "누군가에게 작은 도움을 주면 기분이 좋아질 거예요."],
+    "ISTP": ["도전하는 하루를 보내보세요! 🛠️", "문제를 해결하는 능력을 믿으세요."],
+    "ISTJ": ["오늘은 체크리스트를 정리해보세요. ✔️", "계획대로 진행하는 당신, 멋져요!"],
+    "ENFP": ["열정을 마음껏 펼쳐보세요! 🌟", "당신의 에너지가 모두에게 전해질 거예요."],
+    "ENFJ": ["누군가의 하루를 빛내주세요. ✨", "당신의 따뜻함이 소중한 하루를 만듭니다."],
+    "ENTP": ["오늘은 아이디어 배틀을 즐겨보세요! ⚡", "다른 시각으로 세상을 바라봐요."],
+    "ENTJ": ["목표를 정하고 돌진해보세요. 🚀", "당신의 리더십을 믿어요!"],
+    "ESFP": ["지금 이 순간을 즐기세요. 🎉", "당신의 웃음은 모두를 행복하게 해요."],
+    "ESFJ": ["주변 사람들을 챙기는 당신, 고마워요! 💕", "작은 친절이 큰 힘이 돼요."],
+    "ESTP": ["새로운 경험에 도전해봐요! 🔥", "스릴을 즐기는 당신, 멋져요!"],
+    "ESTJ": ["조직력을 발휘해보세요. 🗂️", "당신의 꼼꼼함이 빛나는 날이에요!"],
 }
 
 if mbti:
-    if mbti in mbti_memes:
-        # 이미지 랜덤 선택
-        meme_path = random.choice(mbti_memes[mbti])
-
-        # 파일이 실제로 있는지 확인
-        if os.path.exists(meme_path):
-            st.image(Image.open(meme_path), caption=f"오늘의 {mbti} 밈!", use_column_width=True)
-        else:
-            st.warning(f"⚠️ {mbti}의 밈 이미지가 존재하지 않아요!\n'`{meme_path}`' 경로를 확인해보세요.")
+    if mbti in mbti_messages:
+        message = random.choice(mbti_messages[mbti])
+        st.success(f"✨ 오늘의 {mbti} 밈 메시지: \n\n> {message}")
     else:
         st.warning("⚠️ 유효하지 않은 MBTI 유형이에요. 다시 입력해 주세요!")
 
